@@ -16,10 +16,17 @@
     </head>
     <body>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            .feature_list{
+                display: inline-block;
+                width: 100%;
+            }
 
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+            .feature_list > ul{
+                float: left;
+            }
+        </style>
+        
         <div id="app" class="panel">
             <div id="header_images" style="display: flex; flex-direction: row; justify-content: space-between; width: 300px">
                 <span @click="selectedHeader = 1" class="link-primary">Build</span>
@@ -27,19 +34,65 @@
                 <span @click="selectedHeader = 3" class="link-primary">Sustain</span>
             </div>
             <br/>
-            <div v-if="selectedHeader == 1">
-                build
-            </div>
-            <div v-if="selectedHeader == 2">
-                maintain
-            </div>
-            <div v-if="selectedHeader == 3">
-                sustain
-            </div>
             <div id="img_placeholder">
-                <img src="images/Asher.png" width="720"/>
+                <img v-bind:src="imageBindings[selectedImage]"  width="720"/>
             </div>
-            <div id="lists"></div>
+            <div id="lists">
+                <div class="feature_list" v-if="selectedHeader == 1">
+                    <ul>
+                       <li @mouseover="selectedImage = 'crane'"> Design Build Services</li>
+                       <li @mouseover="selectedImage = 'controls'"> Building Automation System (BAS)</li>
+                       <li @mouseover="selectedImage = 'chiller'"> Central Plant</li>
+                       <li @mouseover="selectedImage = 'chiller'"> Chiller Retrofit</li>
+                       <li @mouseover="selectedImage = 'boiler'"> Boiler Retrofit and/or Replacement</li>
+                    </ul>
+                    <ul>
+                       <li @mouseover="selectedImage = 'controls'"> Building Intergration</li>
+                       <li @mouseover="selectedImage = 'crane'"> Package Rooftop Unit Install</li>
+                       <li @mouseover="selectedImage = 'pool'"> Pool Room Conditioning</li>
+                       <li @mouseover="selectedImage = 'cooling'"> Cooling Towers</li>
+                       <li @mouseover="selectedImage = 'uv'"> UV Light Install</li>
+                    </ul>
+                </div>
+                <div class="feature_list"  v-if="selectedHeader == 2">
+                    <ul>
+                        <li @mouseover="selectedImage = 'select'">PM Agreement (with Sub-groups)</li>
+                        <li @mouseover="selectedImage = 'chiller'">Centrifugal Service (with sub-groups)</li>
+                        <li @mouseover="selectedImage = 'select'">Select Agreements</li>
+                        <li @mouseover="selectedImage = 'chiller'">Screw Compressor Replacement</li>
+                        <li @mouseover="selectedImage = 'boiler'">Boiler Services 
+                            <ul>
+                                <li>retube</li>
+                                <li>combustion analyses</li>
+                                <li>gas piping</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li @mouseover="selectedImage = 'airside'">Air Side Service (with sub-groups)</li>
+                        <li @mouseover="selectedImage = 'plumbing'">Plumbing</li>
+                        <li @mouseover="selectedImage = 'emergency'">Emergency Service</li>
+                        <li @mouseover="selectedImage = 'cooling'">Cooling Tower Cleaning & Rebuild</li>
+                        <li @mouseover="selectedImage = 'chiller'">Pump Rebuilds</li>
+                    </ul>
+                </div>
+                <div class="feature_list" v-if="selectedHeader == 3">
+                    <ul>
+                        <li @mouseover="selectedImage = 'select'">On-Site Services (SBS)</li>
+                        <li @mouseover="selectedImage = 'controls'">Connected Building Services</li>
+                        <li @mouseover="selectedImage = 'asset'">Asset Management</li>
+                        <li @mouseover="selectedImage = 'base'">Building Commissioning  & Energy Studies</li>
+                        <li @mouseover="selectedImage = 'asher'">ASHER</li>
+                    </ul>
+                    <ul>
+                        <li @mouseover="selectedImage = 'service'">Safety</li>
+                        <li @mouseover="selectedImage = 'rentals'">Rentals</li>
+                        <li @mouseover="selectedImage = 'parts'">Parts</li>
+                        <li @mouseover="selectedImage = 'call'">Service Reports</li>
+                        <li @mouseover="selectedImage = 'service'">Training</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
 
@@ -51,8 +104,26 @@
                     return {
                         selectedHeader: 1,
                         imageBindings:{
+                            select: "images/Select.png",
+                            asher: "images/Asher.png",
+                            asset: "images/Asset Management.png",
+                            boiler: "images/Boiler.png",
+                            call: "images/Call Summary.png",
+                            chiller: "images/Chiller Screw.png",
+                            controls: "images/Controls.png",
+                            cooling: "images/Cooling Tower.png",
+                            crane: "images/Crane.png",
+                            emergency: "images/Emergency.png",
+                            parts: "images/Parts.png",
+                            plumbing: "images/Plumbing.png",
+                            pool: "images/Pool.png",
+                            rentals: "images/Rentals.png",
+                            select: "images/Select.png",
+                            service: "images/Service Trucks.png",
+                            uv: "images/UV.png",
 
-                        }
+                        },
+                        selectedImage: "select"
                     }
                 },
                 computed(){
