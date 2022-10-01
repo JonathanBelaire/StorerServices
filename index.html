@@ -21,8 +21,24 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div id="app" class="panel">
-            <h1>{{message}}</h1>
-            <div id="img_placeholder"></div>
+            <div id="header_images" style="display: flex; flex-direction: row; justify-content: space-between; width: 300px">
+                <span @click="selectedHeader = 1" class="link-primary">Build</span>
+                <span @click="selectedHeader = 2" class="link-primary">Maintain</span>
+                <span @click="selectedHeader = 3" class="link-primary">Sustain</span>
+            </div>
+            <br/>
+            <div v-if="selectedHeader == 1">
+                build
+            </div>
+            <div v-if="selectedHeader == 2">
+                maintain
+            </div>
+            <div v-if="selectedHeader == 3">
+                sustain
+            </div>
+            <div id="img_placeholder">
+                <img src="images/Asher.png" width="720"/>
+            </div>
             <div id="lists"></div>
         </div>
 
@@ -31,11 +47,17 @@
             const { createApp } = Vue
 
             createApp({
-            data() {
-                return {
-                    message: 'Hello Vue!'
+                data() {
+                    return {
+                        selectedHeader: 1,
+                        imageBindings:{
+
+                        }
+                    }
+                },
+                computed(){
+
                 }
-            }
             }).mount('#app')
         </script>
         <!-- <script src="" async defer></script> -->
