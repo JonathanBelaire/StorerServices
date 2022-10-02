@@ -39,6 +39,7 @@
             </div>
             <div id="lists">
                 <div class="feature_list" v-if="selectedHeader == 1">
+                    <h1>Build</h1>
                     <ul>
                        <li @mouseover="selectedImage = 'crane'"> Design Build Services</li>
                        <li @mouseover="selectedImage = 'controls'"> Building Automation System (BAS)</li>
@@ -55,6 +56,7 @@
                     </ul>
                 </div>
                 <div class="feature_list"  v-if="selectedHeader == 2">
+                    <h1>Maintain</h1>
                     <ul>
                         <li @mouseover="selectedImage = 'select'">PM Agreement (with Sub-groups)</li>
                         <li @mouseover="selectedImage = 'chiller'">Centrifugal Service (with sub-groups)</li>
@@ -77,6 +79,7 @@
                     </ul>
                 </div>
                 <div class="feature_list" v-if="selectedHeader == 3">
+                    <h1>Sustain</h1>
                     <ul>
                         <li @mouseover="selectedImage = 'select'">On-Site Services (SBS)</li>
                         <li @mouseover="selectedImage = 'controls'">Connected Building Services</li>
