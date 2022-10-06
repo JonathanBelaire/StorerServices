@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-</head>
-
-<body>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-
-    <script>const directory = "images/";</script>
+<script>const directory = "/wp-content/uploads/2021/11/";</script>
+<script>const directory = "images/";</script>
     <style>
         .feature-list {
             display: inline-block;
@@ -34,14 +12,14 @@
             
         }
     
-        .feature-list p {
+        .item-header{
             cursor: pointer;
             font-size: 14pt;
             font-weight: bold;
             color: black;
         }
-    
-        .feature-list p:hover {
+
+        .item-header:hover{
             filter: brightness(150%);
             color: rgb(29, 29, 29);
         }
@@ -113,7 +91,7 @@
         <div style="background-color: #122A48;" class="sub-panel">
             <div style="text-align: center; padding-top: 10px;">
                 <h1 style="color: #ffb600">Your single source for Commercial and Industrial HVAC Services and Plumbing.
-                    </h2>
+                    </h1>
             </div>
         </div>
         <div class="interactive-wrapper">
@@ -151,7 +129,7 @@
                         <list-item :item="items.airsideService" ></list-item>
                         <list-item :item="items.plumbing" ></list-item>
                         <list-item :item="items.emergency" ></list-item>
-                        <list-item :item="items.cooling" ></list-item>
+                        <list-item :item="items.coolingTowerCleaning" ></list-item>
                         <list-item :item="items.pumpRebuilds" ></list-item>
                     </div>
                 </div>
@@ -175,7 +153,7 @@
             </div>
         </div>
     </div>
-    </div>
+    
     
     
     <script>
@@ -190,14 +168,15 @@
                 }
             },
             props: ['item'],
-            template: ` <p v-on:click="onItemClick(item)">
-                <span v-if="!item.showSubItems">&#9654;</span>
-                <span v-else>&#9660;</span> 
-                {{ item.title }} 
-                <ul v-if="item.showSubItems">
-                    <li v-for="subItem in item.subItems">{{subItem}}
-                    </li>
-                </ul></p>`
+            template: `<span class="item-header" v-on:click="onItemClick(item)">
+                <span v-if="!item.showSubItems"> &#9654; </span>
+                <span v-else> &#9660; </span> 
+                    {{ item.title }} 
+                    <ul v-if="item.showSubItems">
+                        <li v-for="subItem in item.subItems">{{subItem}}
+                        </li>
+                    </ul>
+                </span>`
             
         };
     
@@ -315,7 +294,7 @@
                             showSubItems: false,
                             image: "emergency"
                         },
-                        coolingTower: {
+                        coolingTowerCleaning: {
                             title: "Cooling Tower Cleaning & Rebuild",
                             subItems: ["Lorem ipsum latin gibberish"],
                             showSubItems: false,
@@ -429,5 +408,3 @@
     
         vueApp.mount('#vue-app')
     </script>
-
-</html>
