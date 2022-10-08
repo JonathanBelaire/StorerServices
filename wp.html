@@ -1,21 +1,28 @@
 <script>const directory = "/wp-content/uploads/2021/11/";</script>
-<script>const directory = "images/";</script>
-    <style>
-        .feature-list {
+
+<style>
+    .feature-list {
             display: inline-block;
             min-width: 700px;
+        }
+        
+        .feature-list>h1{
+            font-family: "open sans";
+            font-weight: bold;
         }
     
         .feature-list>div {
             float: left;
             padding-right: 105px;
+            width: 500px;
             
         }
     
         .item-header{
             cursor: pointer;
-            font-size: 14pt;
-            font-weight: bold;
+            font-size: 16pt;
+            font-weight: 400;
+            font-family: "roboto condensed";
             color: black;
         }
 
@@ -26,6 +33,7 @@
     
         .app-wrapper {
             background-image: linear-gradient(#FFFFFF, #0D2645);
+            
         }
     
         .interactive-wrapper {
@@ -35,7 +43,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-image: radial-gradient(#FFFFFF 13%, #151855 120%);
+            background-color: #c7c8da;
         }
     
         .sub-panel {
@@ -56,13 +64,14 @@
         }
     
         .header-button {
-            font-size: 25pt;
+            font-size: 24pt;
             width: 180px;
             cursor: pointer;
             color: #3a3a3b;
             font-weight: bold;
             border-radius: 4px;
             border: 1px solid;
+            font-family: "open sans";
             background-image: linear-gradient(to bottom right, #A8A799, #F8FAF7, #A8A799);
         }
     
@@ -71,340 +80,344 @@
         }
     
         .list-wrapper {
-            height: 550px;
+            
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-    </style>
-    
-    <div id="vue-app" class="app-wrapper"
-        style=" display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
-        <div style="background-color: #0D2645" class="sub-panel">
-            <div id="header-images" class="header-button-wrapper">
-                <button v-on:click="selectedHeader = 1" class="header-button">Build</button>
-                <button v-on:click="selectedHeader = 2" class="header-button">Maintain</button>
-                <button v-on:click="selectedHeader = 3" class="header-button">Sustain</button>
-            </div>
+        
+        .sub-item{
+            font-size: 11pt;
+            font-family: "open sans";
+        }
+</style>
+
+<div id="vue-app" class="app-wrapper"
+    style=" display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+    <div style="background-color: #0D2645" class="sub-panel">
+        <div id="header-images" class="header-button-wrapper">
+            <button v-on:click="selectedHeader = 1" class="header-button">Build</button>
+            <button v-on:click="selectedHeader = 2" class="header-button">Maintain</button>
+            <button v-on:click="selectedHeader = 3" class="header-button">Sustain</button>
         </div>
-        <div style="background-color: #122A48;" class="sub-panel">
-            <div style="text-align: center; padding-top: 10px;">
-                <h1 style="color: #ffb600">Your single source for Commercial and Industrial HVAC Services and Plumbing.
-                    </h1>
-            </div>
+    </div>
+    <div style="background-color: #122A48;" class="sub-panel">
+        <div style="text-align: center; padding-top: 10px;">
+            <h1 style="color: #ffb600">Your single source for Commercial and Industrial HVAC Services and Plumbing.
+            </h1>
         </div>
-        <div class="interactive-wrapper">
-            <div id="img-placeholder">
-                <img v-bind:src="imageBindings[selectedImage]" width="550" />
+    </div>
+    <div class="interactive-wrapper">
+        <div id="img-placeholder">
+            <img v-bind:src="imageBindings[selectedImage]" width="550" />
+        </div>
+        <div id="lists" class="list-wrapper">
+            <div class="feature-list" v-if="selectedHeader == 1">
+                <h1>BUILD</h1>
+                <div>
+                    <list-item :item="items.designBuildServices"></list-item>
+                    <list-item :item="items.buildingAutomation"></list-item>
+                    <list-item :item="items.centralPlant"></list-item>
+                    <list-item :item="items.chillerRetrofit"></list-item>
+                    <list-item :item="items.boilerRetrofit"></list-item>
+                </div>
+                <div>
+                    <list-item :item="items.buildingIntegration"></list-item>
+                    <list-item :item="items.packageRooftop"></list-item>
+                    <list-item :item="items.poolRoom"></list-item>
+                    <list-item :item="items.coolingTower"></list-item>
+                    <list-item :item="items.uv"></list-item>
+                </div>
             </div>
-            <div id="lists" class="list-wrapper">
-                <div class="feature-list" v-if="selectedHeader == 1">
-                    <h1>BUILD</h1>
-                    <div>
-                        <list-item :item="items.designBuildServices" ></list-item>
-                        <list-item :item="items.buildingAutomation" ></list-item>
-                        <list-item :item="items.centralPlant" ></list-item>
-                        <list-item :item="items.chillerRetrofit" ></list-item>
-                        <list-item :item="items.boilerRetrofit" ></list-item>
-                    </div>
-                    <div>
-                        <list-item :item="items.buildingIntegration" ></list-item>
-                        <list-item :item="items.packageRooftop" ></list-item>
-                        <list-item :item="items.poolRoom" ></list-item>
-                        <list-item :item="items.coolingTower" ></list-item>
-                        <list-item :item="items.uv" ></list-item>
-                    </div>
+            <div class="feature-list" v-if="selectedHeader == 2">
+                <h1>MAINTAIN</h1>
+                <div>
+                    <list-item :item="items.pm"></list-item>
+                    <list-item :item="items.centrifugal"></list-item>
+                    <list-item :item="items.selectAgreements"></list-item>
+                    <list-item :item="items.screwCompressor"></list-item>
+                    <list-item :item="items.boilerServices"></list-item>
                 </div>
-                <div class="feature-list" v-if="selectedHeader == 2">
-                    <h1>MAINTAIN</h1>
-                    <div>
-                        <list-item :item="items.pm" ></list-item>
-                        <list-item :item="items.centrifugal" ></list-item>
-                        <list-item :item="items.selectAgreements" ></list-item>
-                        <list-item :item="items.screwCompressor" ></list-item>
-                        <list-item :item="items.boilerServices" ></list-item>
-                    </div>
-                    <div>
-                        <list-item :item="items.airsideService" ></list-item>
-                        <list-item :item="items.plumbing" ></list-item>
-                        <list-item :item="items.emergency" ></list-item>
-                        <list-item :item="items.coolingTowerCleaning" ></list-item>
-                        <list-item :item="items.pumpRebuilds" ></list-item>
-                    </div>
+                <div>
+                    <list-item :item="items.airsideService"></list-item>
+                    <list-item :item="items.plumbing"></list-item>
+                    <list-item :item="items.emergency"></list-item>
+                    <list-item :item="items.coolingTowerCleaning"></list-item>
+                    <list-item :item="items.pumpRebuilds"></list-item>
                 </div>
-                <div class="feature-list" v-if="selectedHeader == 3">
-                    <h1>SUSTAIN</h1>
-                    <div>
-                        <list-item :item="items.onSiteServices" ></list-item>
-                        <list-item :item="items.connectedBuilding" ></list-item>
-                        <list-item :item="items.assetManagement" ></list-item>
-                        <list-item :item="items.buildingCommissioning" ></list-item>
-                        <list-item :item="items.asher" ></list-item>
-                    </div>
-                    <div>
-                        <list-item :item="items.safety" ></list-item>
-                        <list-item :item="items.rentals" ></list-item>
-                        <list-item :item="items.parts" ></list-item>
-                        <list-item :item="items.serviceReports" ></list-item>
-                        <list-item :item="items.training" ></list-item>
-                    </div>
+            </div>
+            <div class="feature-list" v-if="selectedHeader == 3">
+                <h1>SUSTAIN</h1>
+                <div>
+                    <list-item :item="items.onSiteServices"></list-item>
+                    <list-item :item="items.connectedBuilding"></list-item>
+                    <list-item :item="items.assetManagement"></list-item>
+                    <list-item :item="items.buildingCommissioning"></list-item>
+                    <list-item :item="items.asher"></list-item>
+                </div>
+                <div>
+                    <list-item :item="items.safety"></list-item>
+                    <list-item :item="items.rentals"></list-item>
+                    <list-item :item="items.parts"></list-item>
+                    <list-item :item="items.serviceReports"></list-item>
+                    <list-item :item="items.training"></list-item>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-    
-    <script>
-        const { createApp } = Vue
-    
-       
-    
-        const ListItemComponent = {
-            methods: {
-                onItemClick(item) {
-                    this.$root.itemClick(item);
-                }
-            },
-            props: ['item'],
-            template: `<span class="item-header" v-on:click="onItemClick(item)">
+</div>
+
+
+
+<script>
+    const { createApp } = Vue
+
+
+
+    const ListItemComponent = {
+        methods: {
+            onItemClick(item) {
+                this.$root.itemClick(item);
+            }
+        },
+        props: ['item'],
+        template: `<span class="item-header" v-on:click="onItemClick(item)">
                 <span v-if="!item.showSubItems"> &#9654; </span>
                 <span v-else> &#9660; </span> 
                     {{ item.title }} 
                     <ul v-if="item.showSubItems">
-                        <li v-for="subItem in item.subItems">{{subItem}}
+                        <li v-for="subItem in item.subItems" class="sub-item">{{subItem}}
                         </li>
                     </ul>
                 </span>`
-            
-        };
-    
-        const vueApp = createApp({
-            data() {
-                return {
-                    selectedHeader: 1,
-                    items:
-                    {
-                        designBuildServices: {
-                            title: "Design Build Services",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "select"
-                        },
-                        buildingAutomation: {
-                            title: "Building Automation System (BAS)",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "controls"
-                        },
-                        centralPlant: {
-                            title: "Central Plant",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "chiller"
-                        },
-                        chillerRetrofit: {
-                            title: "Chiller Retrofit",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "chiller"
-                        },
-                        boilerRetrofit: {
-                            title: "Boiler Retrofit and/or Replacement",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "boiler"
-                        },
-                        buildingIntegration: {
-                            title: "Building Intergration",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "controls"
-                        },
-                        packageRooftop: {
-                            title: "Package Rooftop Unit Install",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "crane"
-                        },
-                        poolRoom: {
-                            title: "Pool Room Conditioning)",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "pool"
-                        },
-                        coolingTower: {
-                            title: "Cooling Towers",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "cooling"
-                        },
-                        uv: {
-                            title: "UV Light Install",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "uv"
-                        },
-                        pm: {
-                            title: "PM Agreement (with Sub-groups)",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "select"
-                        },
-                        centrifugal: {
-                            title: "Centrifugal Service (with sub-groups)",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "chiller"
-                        },
-                        selectAgreements: {
-                            title: "Select Agreements",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "select"
-                        },
-                        screwCompressor: {
-                            title: "Screw Compressor Replacement",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "chiller"
-                        },
-                        boilerServices: {
-                            title: "Boiler Services",
-                            subItems: ["retube", "combustion analyses", "gas piping"],
-                            showSubItems: false,
-                            image: "boiler"
-                        },
-                        airsideService: {
-                            title: "Air Side Service (with sub-groups)",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "airside"
-                        },
-                        plumbing: {
-                            title: "Plumbing",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "plumbing"
-                        },
-                        emergency: {
-                            title: "Emergency Service",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "emergency"
-                        },
-                        coolingTowerCleaning: {
-                            title: "Cooling Tower Cleaning & Rebuild",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "cooling"
-                        },
-                        pumpRebuilds: {
-                            title: "Pump Rebuilds",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "chiller"
-                        },
-                        onSiteServices: {
-                            title: "On-Site Services (SBS)",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "select"
-                        },
-                        connectedBuilding: {
-                            title: "Connected Building Services",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "controls"
-                        },
-                        assetManagement: {
-                            title: "Asset Management",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "asset"
-                        },
-                        buildingCommissioning: {
-                            title: "Building Commissioning & Energy Studies",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "base"
-                        },
-                        asher: {
-                            title: "ASHER",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "asher"
-                        },
-                        safety: {
-                            title: "Safety",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "service"
-                        },
-                        rentals: {
-                            title: "Rentals",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "rentals"
-                        },
-                        parts: {
-                            title: "Parts",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "parts"
-                        },
-                        serviceReports: {
-                            title: "Service Reports",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "call"
-                        },
-                        training: {
-                            title: "Training",
-                            subItems: ["Lorem ipsum latin gibberish"],
-                            showSubItems: false,
-                            image: "service"
-                        },
-    
+
+    };
+
+    const vueApp = createApp({
+        data() {
+            return {
+                selectedHeader: 1,
+                items:
+                {
+                    designBuildServices: {
+                        title: "Design Build Services",
+                        subItems: ["Our team and industry partners are available to help building owners, end users, consulting engineers and contractors develop projects from the ground up. Whether the need is budget planning, consulting, or contracting, Storer Services' goal is to be your trusted advisor for any project."],
+                        showSubItems: false,
+                        image: "select"
                     },
-                    imageBindings: {
-                        airside: directory + "Airside.png",
-                        asher: directory + "Asher.png",
-                        asset: directory + "Asset-Management.png",
-                        base: directory + "Base.png",
-                        boiler: directory + "Boiler.png",
-                        call: directory + "Call-Summary.png",
-                        chiller: directory + "Chiller-Screw.png",
-                        controls: directory + "Controls.png",
-                        cooling: directory + "Cooling-Tower.png",
-                        crane: directory + "Crane.png",
-                        emergency: directory + "Emergency.png",
-                        parts: directory + "Parts.png",
-                        plumbing: directory + "Plumbing.png",
-                        pool: directory + "Pool.png",
-                        rentals: directory + "Rentals.png",
-                        select: directory + "Select.png",
-                        service: directory + "Service-Trucks.png",
-                        uv: directory + "UV.png",
-    
+                    buildingAutomation: {
+                        title: "Building Automation System (BAS)",
+                        subItems: ["Direct Digital Controls (DDC) allows you to leverage technology to maximize the operating efficiency of your building. We install interoperable, energy-efficient design backed by the best support and maintenance team in the market."],
+                        showSubItems: false,
+                        image: "controls"
                     },
-                    selectedImage: "select"
-                }
-            },
-            methods: {
-                itemClick(item) {
-                    console.log({item});
-                    this.selectedImage = item.image;
-                    item.showSubItems = !item.showSubItems;
-                }
-            },
-            components:{
-                'list-item': ListItemComponent,
+                    centralPlant: {
+                        title: "Central Plant",
+                        subItems: ["The Central Utility Plant is the heart of your HVAC system. For over 50 years Storer has served as the industry expert in central plant retrofits, replacements, maintenance, and operation.  "],
+                        showSubItems: false,
+                        image: "chiller"
+                    },
+                    chillerRetrofit: {
+                        title: "Chiller Retrofit",
+                        subItems: ["Every chiller plant is unique, which means finding the right chiller for any given situation can be a challenge. Storer will partner with you to select the equipment best suited for your application.   "],
+                        showSubItems: false,
+                        image: "chiller"
+                    },
+                    boilerRetrofit: {
+                        title: "Boiler Retrofit and/or Replacement",
+                        subItems: ["Regardless of model or type, whether steam or hot water, it is imperative that you trust the maintenance of your boiler to professionals to guarantee it is working effectively, energy-efficiently, and safely."],
+                        showSubItems: false,
+                        image: "boiler"
+                    },
+                    buildingIntegration: {
+                        title: "Building Intergration",
+                        subItems: ["A connected and integrated system can help owners and facility managers better manage their buildings. Our experience with integrating existing building automation systems into newly installed components ensures you can control your entire building in one interoperable platform, helping you turn your building system data into usable information.  "],
+                        showSubItems: false,
+                        image: "controls"
+                    },
+                    packageRooftop: {
+                        title: "Package Rooftop Unit Install",
+                        subItems: ["Storer will work with you to find the right solution for your HVAC needs. We install and service a variety of commercial packaged rooftop units to find the one best suited for your building."],
+                        showSubItems: false,
+                        image: "crane"
+                    },
+                    poolRoom: {
+                        title: "Pool Room Conditioning)",
+                        subItems: ["The indoor pool room is one of the most complex spaces to condition. A detailed understanding of temperature and humidity control, psychometrics, pool water chemistry, and mechanical refrigeration is necessary to maintain comfort effectively.   "],
+                        showSubItems: false,
+                        image: "pool"
+                    },
+                    coolingTower: {
+                        title: "Cooling Towers",
+                        subItems: ["Selecting the right cooling tower is a balance between cost and your long-term needs. Understanding water chemistry, cooling tower design, financial implications, and central plant sequence of control among other factors is critical to ensure you get the best investment return.   "],
+                        showSubItems: false,
+                        image: "cooling"
+                    },
+                    uv: {
+                        title: "UV Light Install",
+                        subItems: ["Ultraviolet lights break down organisms that live on cooling coils, deeply cleaning the fins and improving heat transfer.  "],
+                        showSubItems: false,
+                        image: "uv"
+                    },
+                    pm: {
+                        title: "PM Agreement (with Sub-groups)",
+                        subItems: ["A Preventive Maintenance Agreement will not only extend the life of your equipment, but also reduce repair costs and unscheduled downtime"],
+                        showSubItems: false,
+                        image: "select"
+                    },
+                    centrifugal: {
+                        title: "Centrifugal Service (with sub-groups)",
+                        subItems: ["Centrifugal chillers are some of the most complicated equipment at your faclity. For over 50 years Storer has set the standard in in centrifugal overhauls, extented warranties, purge replacements, and compressor rebuilds."],
+                        showSubItems: false,
+                        image: "chiller"
+                    },
+                    selectAgreements: {
+                        title: "Select Agreements",
+                        subItems: ["A Select Agreement will give you a fixed annual price for HVAC maintenance and repairs, allowing you to avoid unplanned budget expenditures."],
+                        showSubItems: false,
+                        image: "select"
+                    },
+                    screwCompressor: {
+                        title: "Screw Compressor Replacement",
+                        subItems: ["Helical Rotary Compressors, commonly referred to as Screw Compressors, are inherently reliable and often give years of dependable service. However, failures of screw compressors are oftentimes quick and without warning, resulting in the loss of a large percentage of your cooling capacity and straining your chiller systems."],
+                        showSubItems: false,
+                        image: "chiller"
+                    },
+                    boilerServices: {
+                        title: "Boiler Services – (with sub-groups) retube, combustion analyses, gas piping",
+                        subItems: ["Burner upgrades, combustion analysis, retubes, door rebuilds, gas supply issues, steam trap problems and inspections are some of the services we provide to increase effeciency and prolong the life of your boiler. "],
+                        showSubItems: false,
+                        image: "boiler"
+                    },
+                    airsideService: {
+                        title: "Air Side Service (with sub-groups)",
+                        subItems: ["Every air handler, whether single or multi-zone, has a different function: Temperature and Humidity Control, Building Pressurization, Ventilation. Proper service requires understanding all of these functions. Our services include, but are not limited to, filter changes, coil replacements, Humidity issues, Low Delta T syndrome, and correction of ventilation and pressurization."],
+                        showSubItems: false,
+                        image: "airside"
+                    },
+                    plumbing: {
+                        title: "Plumbing",
+                        subItems: ["Storer Services offers a SOLUTION to all of your Plumbing needs, including: jetter services, backflow preventer inspections, new constriction/ renovation projects and day to day maintenance."],
+                        showSubItems: false,
+                        image: "plumbing"
+                    },
+                    emergency: {
+                        title: "Emergency Service",
+                        subItems: ["With over 70 technicians and round-the-clock response, we will respond to your emergency in 2 hours or less."],
+                        showSubItems: false,
+                        image: "emergency"
+                    },
+                    coolingTowerCleaning: {
+                        title: "Cooling Tower Cleaning & Rebuild",
+                        subItems: ["Understanding water chemistry, cooling tower design, financial implications, and Central Plant sequence of control, among other factors, is critical to ensure you are getting the best return on your investment. Services we provide include chemical treatment, vibration analysis, belts and gear box inspections, and cleaning among others. "],
+                        showSubItems: false,
+                        image: "cooling"
+                    },
+                    pumpRebuilds: {
+                        title: "Pump Rebuilds",
+                        subItems: ["Chiller Systems are the lifeblood of your HVAC system and pumps are the heart. The loss of any pump (chilled water, condenser water, or hot water) has the possibility of shutting down your entire plant or significantly reducing your cooling or heating capability. We do laser alignment and balancing alongside standard service to keep the heart of your HVAC system running."],
+                        showSubItems: false,
+                        image: "chiller"
+                    },
+                    onSiteServices: {
+                        title: "On-Site Services (SBS)",
+                        subItems: ["Commercial HVAC systems are complex, and finding skilled, experienced staff can be even more complex. Storer will partner with you to provide the expertise you need. "],
+                        showSubItems: false,
+                        image: "select"
+                    },
+                    connectedBuilding: {
+                        title: "Connected Building Services",
+                        subItems: ["Leverage your Building Automation system to reduce operating costs. Using remote access and the latest technology, we can increase building efficiency without straining your budget. "],
+                        showSubItems: false,
+                        image: "controls"
+                    },
+                    assetManagement: {
+                        title: "Asset Management",
+                        subItems: ["Mechanical Equipment is an asset that can quickly become a liablity if not managed properly. Contact us to learn more about this program. "],
+                        showSubItems: false,
+                        image: "asset"
+                    },
+                    buildingCommissioning: {
+                        title: "Building Commissioning & Energy Studies",
+                        subItems: ["Lorem ipsum latin gibberish"],
+                        showSubItems: false,
+                        image: "base"
+                    },
+                    asher: {
+                        title: "ASHER",
+                        subItems: ["A powerful, predictive maintainence tool that collects data about your equipment in real time, reduces the cost of prevenative maintenance programs, and anticipates problems before they happen."],
+                        showSubItems: false,
+                        image: "asher"
+                    },
+                    safety: {
+                        title: "Safety",
+                        subItems: ["The safety of our team members and our clients is our #1 priority. We are compliant in GRMS, Avetta, ISNet World, BROWZ, and CBRE among others."],
+                        showSubItems: false,
+                        image: "service"
+                    },
+                    rentals: {
+                        title: "Rentals",
+                        subItems: ["We offer a complete line of temporary Heating and Cooling equipment to meet your needs, from 1 Ton Spot Cooling up to temporary central cooling and heating plants. Our team is also available to develop contingency plans to minimize the effects of emergencies and have solutions ready before your system fails. "],
+                        showSubItems: false,
+                        image: "rentals"
+                    },
+                    parts: {
+                        title: "Parts",
+                        subItems: ["We have over 90 years of HVAC material procurement experience. From Contactors to Compressors,  Actuators to Valves, we are here to provide you the support you need to get up and running quickly."],
+                        showSubItems: false,
+                        image: "parts"
+                    },
+                    serviceReports: {
+                        title: "Service Reports",
+                        subItems: ["At the end of every service call you will receive an electronic report about exactly what was done, how much time it took, the materials used, and any recommendations we found. "],
+                        showSubItems: false,
+                        image: "call"
+                    },
+                    training: {
+                        title: "Training",
+                        subItems: ["We work with our clients to deliver training that meets their needs. We offer site specific training, in-house classes focused on a wide range of HVAC topics, multi-day HVAC \"bootcamps\", or multi-year apprenticeship programs. "],
+                        showSubItems: false,
+                        image: "service"
+                    },
+
+                },
+                imageBindings: {
+                    airside: directory + "Airside.png",
+                    asher: directory + "Asher.png",
+                    asset: directory + "Asset-Management.png",
+                    base: directory + "Base.png",
+                    boiler: directory + "Boiler.png",
+                    call: directory + "Call-Summary.png",
+                    chiller: directory + "Chiller-Screw.png",
+                    controls: directory + "Controls.png",
+                    cooling: directory + "Cooling-Tower.png",
+                    crane: directory + "Crane.png",
+                    emergency: directory + "Emergency.png",
+                    parts: directory + "Parts.png",
+                    plumbing: directory + "Plumbing.png",
+                    pool: directory + "Pool.png",
+                    rentals: directory + "Rentals.png",
+                    select: directory + "Select.png",
+                    service: directory + "Service-Trucks.png",
+                    uv: directory + "UV.png",
+
+                },
+                selectedImage: "select"
             }
-        })
-    
-        vueApp.component('ListItem', ListItemComponent)
-    
-        vueApp.mount('#vue-app')
-    </script>
+        },
+        methods: {
+            itemClick(item) {
+                this.selectedImage = item.image;
+                item.showSubItems = !item.showSubItems;
+            }
+        },
+        components: {
+            'list-item': ListItemComponent,
+        }
+    })
+
+    vueApp.component('ListItem', ListItemComponent)
+
+    vueApp.mount('#vue-app')
+</script>
